@@ -16,7 +16,7 @@ export class UpdateEmployee {
     
         await this.employeeRepo.update(user);
     
-        return userInfo;
+        return employeeInfo;
 
     }
 
