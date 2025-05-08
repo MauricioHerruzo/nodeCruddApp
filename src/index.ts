@@ -16,30 +16,30 @@ app.listen(port, () => {
 // ❌El puerto no se me actualiza sobre los cambios, tengo que reiniciarlo
 // ❌ no entiendo lo que tengo que sacar en el get
 //GET ALL
-app.get('/', (req, res)=>{
+app.get('/users', (req, res)=>{
     res.send('<h1>Hola</h1>')
     // res.send(getUsers());
 })
 
-//GET NAME
-app.get('/users',(req,res)=>{
-    // res.
-})
+// //GET NAME
+// app.get('/users:id',(req,res)=>{
+//     // res.
+// })
 
-//POST
-app.post('/users',(req, res)=>{
+// //POST
+// app.post('/users:id',(req, res)=>{
     
-})
+// })
 
-//PUT
-app.put('/users',(req, res)=>{
+// //PUT
+// app.put('/users:id',(req, res)=>{
     
-})
+// })
 
-//DELETE
-app.delete('/users', (req, res) =>{
+// //DELETE
+// app.delete('/users:id', (req, res) =>{
     
-})
+// })
 
 
 
