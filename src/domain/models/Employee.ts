@@ -1,6 +1,6 @@
 
-
-class Employee {
+//el export es porque vas a exportar la clase a otros archivos
+export class Employee {
     private readonly id: string
     private name: string
     private lastName: string

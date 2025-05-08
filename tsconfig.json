@@ -1,6 +1,7 @@
 
 {
   "compilerOptions":{
+    //estoy estableciendo src como ruta absoluta para ahorrame luego en rallada de rutas
     "baseUrl": "./src",
     "esModuleInterop": true,
     "outDir": "./dist",
