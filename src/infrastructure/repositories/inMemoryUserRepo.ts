@@ -2,7 +2,7 @@ import { Employee } from 'domain/models/Employee';
 import { EmployeeRepository } from 'domain/repositories/EmployeeRepository';
 
 export class InMemoryUserRepo implements EmployeeRepository{
-     private users: Employee[]=[];
+     private employees: Employee[]=[];
 
          async findById(id:string): Promise < Employee | null>{
             return this.employees.find(employee => employee.getId() === id)
@@ -13,15 +13,15 @@ export class InMemoryUserRepo implements EmployeeRepository{
          }
 
          async create(employee: Employee): Promise<void>{
-            this.employees = [...this.users, user];
+            this.employees = [...this.employees, employee];
          }
 
          async update(employeeParam: Employee): Promise<void>{
-            const employee = this.employees.find(employee => employee.getID() === employeeParam.getID())
+            const employee = this.employees.find(employee => employee.getId() === employeeParam.getId())
 
             if(!employee) throw new Error('User not found');
 
-            this.users = [
+            this.employees = [
                 ...this.employees.filter(employee => employee.getId()!== employeeParam.getId()), employeeParam
             ]
          }

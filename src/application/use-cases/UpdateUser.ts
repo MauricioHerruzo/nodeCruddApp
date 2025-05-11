@@ -3,20 +3,20 @@ import { EmployeeRepository } from 'domain/repositories/EmployeeRepository';
 import { emit } from 'process';
 
 export class UpdateEmployee {
-    constructor(private readonly userRepository: EmployeeRepository){
+    constructor(private readonly employeeRepository: EmployeeRepository){
 
     }
-    async execute(id: string, name: string, lastName:string, position: "junior" | "senior" | "teamLeader" | "ceo", salary: number, contractTermination: string, team: string, yearsOfService: number){
+    async execute(id: string, position: "junior" | "senior" | "teamLeader" | "ceo", salary: number ){
         
-        const user = await this.employeeRepo.findById(id);
-        if(!employee) throw new Error(" User not found");
+        const employee = await this.employeeRepository.findById(id);
+        if(!Employee) throw new Error(" User not found");
     
-        employee.changeName(name);
-        employee.changeLastName(lastName);
+        employee.changeSalary(salary);
+        employee.changePosition(position);
     
-        await this.employeeRepo.update(user);
+        await this.employeeRepository.update(employee);
     
-        return employeeInfo;
+        return employee;
 
     }
 

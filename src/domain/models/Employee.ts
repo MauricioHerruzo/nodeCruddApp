@@ -40,4 +40,7 @@ export class Employee {
         this.position = newPosition
     }
 
+    public getId(){
+        return this.id
+    }
 }
