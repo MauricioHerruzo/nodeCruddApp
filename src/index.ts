@@ -13,8 +13,7 @@ app.listen(port, () => {
     console.log(`Escuchando el puerto ${port}`);
 });
 
-// ❌El puerto no se me actualiza sobre los cambios, tengo que reiniciarlo
-// ❌ no entiendo lo que tengo que sacar en el get
+
 //GET ALL
 app.get('/users', (req, res)=>{
     res.send('<h1>Hola</h1>')

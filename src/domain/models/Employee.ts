@@ -9,6 +9,7 @@ export class Employee {
     private contractTermination : string
     private team : string
     private yearsOfService: number
+
     
     constructor(
         id: string,
@@ -30,4 +31,13 @@ export class Employee {
             this.yearsOfService = yearsOfService;
 
     }
+
+    public changeSalary(newSalary : number):void{
+        this.salary = newSalary
+    }
+
+    public changePosition (newPosition : "junior" | "senior" | "teamLeader" | "ceo"){
+        this.position = newPosition
+    }
+
 }
