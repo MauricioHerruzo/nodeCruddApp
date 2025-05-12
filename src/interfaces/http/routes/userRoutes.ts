@@ -7,9 +7,9 @@ import { CreateEmployee } from 'application/use-cases/CreateEmployee';
 import { DeleteEmployee } from 'application/use-cases/DeleteEmployee';
 //falta una
 import { GetAllEmployees } from 'application/use-cases/GetAllEmployees';
-import { UpdateEmployee } from 'application/use-cases/UpdateUser';
+import { UpdateEmployee } from 'application/use-cases/UpdateEmployee';
 
-import {UserController} from '../controlers/UserController'
+import {UserController} from '../controlers/UserController';
 const router = Router();
 
 //implementeamos los user controller e inmemoryRepo
@@ -29,4 +29,4 @@ router.put('/:id', controller.update);
 router.delete('/:id', controller.delete);
 
 //LO EXPORTAS PARA USARLO EN EL INDEX
-export default router
+export {router}

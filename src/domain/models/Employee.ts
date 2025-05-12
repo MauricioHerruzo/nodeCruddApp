@@ -36,11 +36,19 @@ export class Employee {
         this.salary = newSalary
     }
 
-    public changePosition (newPosition : "junior" | "senior" | "teamLeader" | "ceo"){
+    public changePosition (newPosition : "junior" | "senior" | "teamLeader" | "ceo"): void{
         this.position = newPosition
     }
 
-    public getId(){
+    public getId(): string{
         return this.id
+    }
+
+    public getName(): string{
+        return this.name
+    }
+
+    public getPosition(): string{
+        return this.position
     }
 }

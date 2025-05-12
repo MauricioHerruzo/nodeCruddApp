@@ -1,6 +1,9 @@
 //Importar el framwork de express
 import express from 'express';
 
+//importas el router hecho
+import {router} from './interfaces/http/routes/userRoutes'
+
 //ejecutarlo , esto devuelve el objeto app, que es lo que vamos a usar para todo
 const app = express();
 
@@ -13,32 +16,10 @@ app.listen(port, () => {
     console.log(`Escuchando el puerto ${port}`);
 });
 
-
-//GET ALL
-app.get('/users', (req, res)=>{
-    res.send('<h1>Hola</h1>')
-    // res.send(getUsers());
-})
-
-// //GET NAME
-// app.get('/users:id',(req,res)=>{
-//     // res.
-// })
-
-// //POST
-// app.post('/users:id',(req, res)=>{
-    
-// })
-
-// //PUT
-// app.put('/users:id',(req, res)=>{
-    
-// })
-
-// //DELETE
-// app.delete('/users:id', (req, res) =>{
-    
-// })
+//usas info de express que necesitas
+app.use(express.json());
+//usas el router que has importado y que tienes hecho aparte
+app.use('/users', router)
 
 
 

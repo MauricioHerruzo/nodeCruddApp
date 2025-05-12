@@ -29,4 +29,32 @@ export class InMemoryUserRepo implements EmployeeRepository{
          async delete(id: string): Promise <void>{
             this.employees = this.employees.filter(employee => employee.getId() !== id);
          }
+
+         async findByFilter(name?: string, position?: 'junior' | 'senior' | 'teamLeader' | 'ceo'): Promise<Employee[]> {
+           
+            if(position=== undefined){
+               return this.employees.filter(employee => employee.getName() === name);
+            }
+
+            if(name === undefined){
+               return this.employees.filter(employee => employee.getPosition() === position); 
+            }
+            //caso para filtrar por ambos
+            return this.employees.filter(employee => employee.getPosition() === position && employee.getPosition() === position); 
+
+
+         }
+
+         // FORMA DEL PROFESOR 
+
+         async findByFilter(filter: Partial<{name: string; email: string}>){
+               return this.employees.filter(user =>{
+                  // pones el ternario a true, porque si no recibes el filtro de name, pones a true para que pasen todos los names
+                 const matchName = filter.getName() ? user.getName().includes(filter.name): true;
+                 //lo mismo con el email, si recibes el filtro por email pues filtra, si no pues true para que pasen todos los emails
+                 const matchEmail = filter.email ? user.getEmail().includes(filter.email): true;
+
+                 return matchName && matchEmail;
+               })
+    }
 }
