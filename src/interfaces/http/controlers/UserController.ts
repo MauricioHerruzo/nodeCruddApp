@@ -22,7 +22,7 @@ export class EmployeeController {
         try{
             const {id} = req.params;
             const user = await this.getEmployee.execute(id);
-            res.status(200).json(employee)
+            res.status(404).json(employee)
         }catch(err: any){
 
         }
