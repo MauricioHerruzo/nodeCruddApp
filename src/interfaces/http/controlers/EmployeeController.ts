@@ -6,6 +6,7 @@ import {DeleteEmployee} from "application/use-cases/DeleteEmployee";
 import { GetAllEmployees } from "application/use-cases/GetAllEmployees";
 import { GetEmployee } from "application/use-cases/GetEmployee";
 import { UpdateEmployee } from "application/use-cases/UpdateEmployee";
+import { FindByFilter } from "application/use-cases/FindByFilter";
 
 
 export class EmployeeController {
@@ -14,7 +15,8 @@ export class EmployeeController {
         private readonly  deleteEmployee : DeleteEmployee,
         private readonly getAllEmployees : GetAllEmployees,
         private readonly getEmployee : GetEmployee,
-        private readonly UpdateEmployee : UpdateEmployee
+        private readonly UpdateEmployee : UpdateEmployee,
+        private readonly findByFilter: FindByFilter
 
     ){}
 
@@ -71,6 +73,16 @@ export class EmployeeController {
            const employee = await this.deleteEmployee.execute(id);
            res.status(204).json(employee);
         }catch (err: any){
+            res.status(404).json({error: err.message});
+        }
+    }
+
+    filter = async (req: Request, res: Response)=>{
+        try{
+            const filter : Partial<{name: string, position: "junior" | "senior" | "teamLeader" | "ceo"}> = req.query;
+            const employee = await this.findByFilter.execute(filter);
+            res.status(200).json(employee);
+        } catch(err: any){
             res.status(404).json({error: err.message});
         }
     }
