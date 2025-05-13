@@ -1,11 +1,11 @@
 import { Employee } from 'domain/models/Employee';
 import { EmployeeRepository } from 'domain/repositories/EmployeeRepository';
 
-export class GetUser {
+export class GetEmployee {
     constructor(private readonly employeeRepository: EmployeeRepository){}
 
-    async execute(id: string){
-        const employee = this.employeeRepository.findById(id);
+    async execute(id: string): Promise<Employee>{
+        const employee = await this.employeeRepository.findById(id);
 
         if(!employee) throw new Error("User not found");
 

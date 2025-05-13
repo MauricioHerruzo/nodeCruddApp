@@ -5,7 +5,7 @@ export class InMemoryUserRepo implements EmployeeRepository{
      private employees: Employee[]=[];
 
          async findById(id:string): Promise < Employee | null>{
-            return this.employees.find(employee => employee.getId() === id)
+            return this.employees.find(employee => employee.getId() === id) || null
          }
 
          async findAll(): Promise <Employee[]>{
@@ -30,31 +30,31 @@ export class InMemoryUserRepo implements EmployeeRepository{
             this.employees = this.employees.filter(employee => employee.getId() !== id);
          }
 
-         async findByFilter(name?: string, position?: 'junior' | 'senior' | 'teamLeader' | 'ceo'): Promise<Employee[]> {
+         // async findByFilter(name?: string, position?: 'junior' | 'senior' | 'teamLeader' | 'ceo'): Promise<Employee[]> {
            
-            if(position=== undefined){
-               return this.employees.filter(employee => employee.getName() === name);
-            }
+         //    if(position=== undefined){
+         //       return this.employees.filter(employee => employee.getName() === name);
+         //    }
 
-            if(name === undefined){
-               return this.employees.filter(employee => employee.getPosition() === position); 
-            }
-            //caso para filtrar por ambos
-            return this.employees.filter(employee => employee.getPosition() === position && employee.getPosition() === position); 
+         //    if(name === undefined){
+         //       return this.employees.filter(employee => employee.getPosition() === position); 
+         //    }
+         //    //caso para filtrar por ambos
+         //    return this.employees.filter(employee => employee.getPosition() === position && employee.getPosition() === position); 
 
 
-         }
+         // }
 
          // FORMA DEL PROFESOR 
 
-         async findByFilter(filter: Partial<{name: string; email: string}>){
+         async findByFilter(filter: Partial<{name: string; position: 'junior' | 'senior' | 'teamLeader' | 'ceo'}>){
                return this.employees.filter(user =>{
                   // pones el ternario a true, porque si no recibes el filtro de name, pones a true para que pasen todos los names
-                 const matchName = filter.getName() ? user.getName().includes(filter.name): true;
+                 const matchName = filter.name ? user.getName().includes(filter.name): true;
                  //lo mismo con el email, si recibes el filtro por email pues filtra, si no pues true para que pasen todos los emails
-                 const matchEmail = filter.email ? user.getEmail().includes(filter.email): true;
+                 const matchPosition = filter.position ? user.getPosition().includes(filter.position): true;
 
-                 return matchName && matchEmail;
+                 return matchName && matchPosition;
                })
     }
 }

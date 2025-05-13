@@ -8,9 +8,9 @@ export interface EmployeeRepository {
     create(employee: Employee): Promise<void>;
     update(employee: Employee): Promise<void>;
     delete(id: string): Promise <void>;
-    findByFilter(name?:string, position?:"junior" | "senior" | "teamLeader" | "ceo"): Promise <Employee[]>;
-    //modo profesor de findBYFilter
+    // findByFilter(name?:string, position?:"junior" | "senior" | "teamLeader" | "ceo"): Promise <Employee[]>;
+    // //modo profesor de findBYFilter
                     // Partial es un objeto en el que todo no es necesario 
-    findByFilter(filter: Partial <{name: string; email: string}>): Promise<[Employee]>;
+    findByFilter(filter: Partial <{name: string; email: string}>): Promise<Employee[]>;
     
 }

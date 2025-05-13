@@ -13,7 +13,7 @@ export class EmployeeController {
         private readonly  createEmployee : CreateEmployee,
         private readonly  deleteEmployee : DeleteEmployee,
         private readonly getAllEmployees : GetAllEmployees,
-        private readonly getEmployees : GetEmployee,
+        private readonly getEmployee : GetEmployee,
         private readonly UpdateEmployee : UpdateEmployee
 
     ){}
@@ -21,7 +21,9 @@ export class EmployeeController {
 
     create = async (req: Request, res: Response)=>{
         try{
-            const { id, name, lastName, position, salary, contractTermination, team,yearsOfSerice } = req.body;
+
+            console.log("ID recibido en controller:", req.params.id); 
+            const { id, name, lastName, position, salary, contractTermination, team,yearsOfService } = req.body;
             const employee = await this.createEmployee.execute(id,name,lastName, position, salary, contractTermination, team, yearsOfService);
             res.status(201).json(employee);
         }catch(err: any){
@@ -32,7 +34,8 @@ export class EmployeeController {
     get = async (req: Request, res: Response)=>{
         try{
             const {id} = req.params;
-            const user = await this.getEmployees.execute(id);
+            const employee = await this.getEmployee.execute(id);
+            res.json(employee);
         }catch(err: any){
 
             res.status(404).json({error: err.message})
