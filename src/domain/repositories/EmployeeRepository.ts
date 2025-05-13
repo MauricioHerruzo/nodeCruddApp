@@ -12,5 +12,5 @@ export interface EmployeeRepository {
     // //modo profesor de findBYFilter
                     // Partial es un objeto en el que todo no es necesario 
     findByFilter(filter: Partial <{name: string; email: string}>): Promise<Employee[]>;
-    
+                                    //Estos corchetes podrian ser una interfaz filtro que creairias en la carpeta modelos "Filter" lo exportas y lo usas en estos casos por si cambias o añades más no tienes que cambiar en todos los archivos
 }
