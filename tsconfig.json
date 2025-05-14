@@ -5,13 +5,12 @@
     "module": "CommonJS",
     //estoy estableciendo src como ruta absoluta para ahorrame luego en rallada de rutas
     "baseUrl": "./src",
-    "esModuleInterop": true,
     "outDir": "./dist",
-    "rootDir": "./src",
+    "rootDir": "./",
     "esModuleInterop": true,
     "moduleResolution": "node",
   },
-  "include": ["**/*.ts"],
+  "include": ["src", "tests"],
   "exclude": ["dist"],
 }
 
