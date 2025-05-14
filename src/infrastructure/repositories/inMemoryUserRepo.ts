@@ -3,16 +3,7 @@ import { EmployeeRepository } from 'domain/repositories/EmployeeRepository';
 
 export class InMemoryUserRepo implements EmployeeRepository{
      private employees: Employee[]=[
-      new Employee (
-         "33",
-         "manolo",
-         "fernandez",
-         "junior",
-         1500,
-         "27-6-2027",
-         "team4",
-         3
-      )
+
      ];
 
          async findById(id:string): Promise < Employee | null>{
@@ -67,5 +58,9 @@ export class InMemoryUserRepo implements EmployeeRepository{
 
                  return matchName && matchPosition;
                })
+    }
+
+    async clear(){
+         this.employees = [];
     }
 }
