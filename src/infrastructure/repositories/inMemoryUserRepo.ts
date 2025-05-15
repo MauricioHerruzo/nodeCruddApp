@@ -6,6 +6,10 @@ export class InMemoryUserRepo implements EmployeeRepository{
 
      ];
 
+     public getEmployees(){
+      return this.employees;
+     }
+
          async findById(id:string): Promise < Employee | null>{
             return this.employees.find(employee => employee.getId() === id) || null
          }
