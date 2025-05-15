@@ -1,11 +1,12 @@
 
 // test de la integracion, no del caso de uso, probamos si funciona correctamente crear el user desde un post 
+
+//Com
 import express from 'express';
 import request from 'supertest';
 
 //importas el router
 import  { router } from 'interfaces/http/routes/employeeRoutes';
-import { Employee } from 'domain/models/Employee';
 
 const app = express();
 app.use(express.json());
