@@ -7,16 +7,39 @@ import request from "supertest";
 //importas el router
 import { router } from "interfaces/http/routes/employeeRoutes";
 
+
 const app = express();
 app.use(express.json());
 app.use("/employee", router);
 
 describe("User routes", async () => {
   //estás creando un empleado fuera, teniendo que hacer async el describe, para tener un solo empleado con el que trabajar en todos los test, porque si lo creas dentro del test y al get no le haces crear a su vez un empleado te va a decir que espera un empleado creado qeu se ha creado en el test del post, así tienes uno para trabajar con todos los tests
+  
   const res = await request(app)
     .post("/employee")
     .send({ name: "Manolo", lastName: "Manolez" });
   const employeeId = res.body.id;
+
+  const res2 = await request(app)
+    .post("/employee")
+    .send({ name: "Manolo", lastName: "Manolez" });
+  const employeeId2 = res2.body.id;
+
+  const res3 = await request(app)
+    .post("/employee")
+    .send({ name: "Manolo", lastName: "Manolez" });
+  const employeeId3 = res3.body.id;
+
+  const res4 = await request(app)
+    .post("/employee")
+    .send({ name: "Manolo", lastName: "Manolez" });
+  const employeeId4 = res4.body.id;
+
+  const res5 = await request(app)
+    .post("/employee")
+    .send({ name: "Manolo", lastName: "Manolez" });
+  const employeeId5 = res5.body.id;
+
 
   //realmente no necesitamos crear el user dentro para saber que el teste funciona, lo que necesitamos el los expect, y funcionan, la creacion se está haciendo arriba y matchea con lo que esperas
   it("POST /employee should create a user", async () => {
@@ -46,21 +69,49 @@ describe("User routes", async () => {
       lastName: "Manolez",
     });
   });
+
+  //PAGINATION TEST /users?page=1&limit=10
+  it("SHOULD GET X PAGE of X employees", async()=>{
+    const res = await request(app).get('/employee?page=1&limit=4');
+
+    expect(res.status).toBe(200);
+    expect(res.body).toBe([
+        {   
+            id: employeeId,
+            name: "Manolo",
+            lastName: "Manolez"
+        },
+        {   
+            id: employeeId2,
+            name: "Manolo",
+            lastName: "Manolez"
+        },
+        {   
+            id: employeeId3,
+            name: "Manolo",
+            lastName: "Manolez"
+        },
+        {   
+            id: employeeId4,
+            name: "Manolo",
+            lastName: "Manolez"
+        },
+    ])
+  })
+
+//PAGINATION TEST /users?page=1&limit=10
+  it("SHOULD GET X PAGE of X employees", async()=>{
+    const res = await request(app).get('/employee?page=2&limit=4');
+
+    expect(res.status).toBe(200);
+    expect(res.body).toBe([
+        {   
+            id: employeeId5,
+            name: "Manolo",
+            lastName: "Manolez"
+        },
+    ])
+  })
 });
 
-// //OTRO TEST, ID
-// it('GET /employee should get all employees ', async()=>{
-//     //hay que crear una response para tener un id con el que matchear, se deberia poder hacer más facil pero no funcion
-//     const createResponse = await request(app).post('/employee').send({name: "Manolo", lastName: "Manolez"});
-//     const employeeId = createResponse.body.id;
 
-//     //buscamos por ese id creado
-//     const res = await request(app).get(`/employee/${employeeId}`);
-//     expect(res.status).toBe(200);
-//     //esperamos que reciba los datos correspondientes
-//     expect(res.body).toMatchObject({
-//         id:employeeId,
-//         name: "Manolo",
-//         lastName: "Manolez"
-//     })
-// })

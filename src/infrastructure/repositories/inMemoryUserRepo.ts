@@ -80,4 +80,8 @@ export class InMemoryUserRepo implements EmployeeRepository {
   async clear() {
     this.employees = [];
   }
+
+  async pagePagination(page: number, limit: number): Promise<void> {
+      
+  }
 }
