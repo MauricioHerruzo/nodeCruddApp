@@ -8,6 +8,7 @@ import { GetAllEmployees } from "application/use-cases/GetAllEmployees";
 import { GetEmployee } from "application/use-cases/GetEmployee";
 import { UpdateEmployee } from "application/use-cases/UpdateEmployee";
 import { FindByFilter } from "application/use-cases/FindByFilter";
+import { GetPaginatedEmployee } from "application/use-cases/PageBasedPagination";
 
 export class EmployeeController {
   constructor(
@@ -17,6 +18,7 @@ export class EmployeeController {
     private readonly getEmployee: GetEmployee,
     private readonly UpdateEmployee: UpdateEmployee,
     private readonly findByFilter: FindByFilter,
+    private readonly getPaginatedEmployee : GetPaginatedEmployee
   ) {}
 
   create = async (req: Request, res: Response) => {
@@ -100,4 +102,18 @@ export class EmployeeController {
       res.status(404).json({ error: err.message });
     }
   };
+
+  pagination = async (req: Request, res: Response) => {
+
+    const page = parseInt(req.query.page as string) || 1;
+    const limit = parseInt(req.query.limit as string) || 5;
+    try{
+
+      const result = await this.getPaginatedEmployee.execute(page, limit);
+      res.json(result);
+
+    }catch (err: any){
+      res.status(404).json({ error: err.message });
+    }
+  }
 }

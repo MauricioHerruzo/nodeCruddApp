@@ -81,7 +81,13 @@ export class InMemoryUserRepo implements EmployeeRepository {
     this.employees = [];
   }
 
-  async pagePagination(page: number, limit: number): Promise<void> {
-      
+  async pagePagination(page: number, limit: number): Promise<{ employees: Employee[], total: number }> {
+    //lógica de la paginación
+    const start = (page - 1) * limit;
+    const paginated = this.employees.slice(start, start + limit);
+    return{
+        employees : paginated,
+        total: this.employees.length  
+    }
   }
 }

@@ -11,6 +11,7 @@ import { UpdateEmployee } from "application/use-cases/UpdateEmployee";
 import { FindByFilter } from "application/use-cases/FindByFilter";
 
 import { EmployeeController } from "../controlers/EmployeeController";
+import { GetPaginatedEmployee } from "application/use-cases/PageBasedPagination";
 const router = Router();
 
 //implementeamos los user controller e inmemoryRepo
@@ -22,11 +23,13 @@ const controller = new EmployeeController(
   new GetEmployee(repo),
   new UpdateEmployee(repo),
   new FindByFilter(repo),
+  new GetPaginatedEmployee(repo),
 );
 
 //tienen que ir los casos de get de más específico a más general, porque si no como tengas el general arriba la query entra al primero que pille y le coincida y ya cagaste
 router.get("/filter", controller.filter);
 router.get("/:id", controller.get);
+router.get('/users', controller.pagination);
 router.get("/", controller.getAll);
 
 router.post("/", controller.create);
