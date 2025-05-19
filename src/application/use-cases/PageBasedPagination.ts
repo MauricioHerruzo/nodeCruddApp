@@ -12,7 +12,6 @@ export class GetPaginatedEmployee {
             page,
             totalPages: Math.ceil(total / limit),
             totalItems: total,
-
         }
     }
 }

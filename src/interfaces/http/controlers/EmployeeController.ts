@@ -60,7 +60,7 @@ export class EmployeeController {
     }
   };
 
-  getAll = async (req: Request, res: Response) => {
+  getAll = async (_: Request, res: Response) => {
     try {
       const employees = await this.getAllEmployees.execute();
       res.status(200).json(employees);
@@ -104,15 +104,13 @@ export class EmployeeController {
   };
 
   pagination = async (req: Request, res: Response) => {
-
     const page = parseInt(req.query.page as string) || 1;
     const limit = parseInt(req.query.limit as string) || 5;
-    try{
 
+    try {
       const result = await this.getPaginatedEmployee.execute(page, limit);
-      return res.status(200).json(result);
-
-    }catch (err: any){
+      res.status(200).json(result);
+    } catch (err: any) {
       res.status(404).json({ error: err.message });
     }
   }

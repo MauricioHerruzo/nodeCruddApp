@@ -13,19 +13,19 @@ const app = express();
 app.use(express.json());
 app.use("/employee", router);
 
+const employees: string[] = [];
+
+beforeAll(async () => {
+  for (let i = 0; i < 5; i++) {
+    const response = await request(app)
+      .post("/employee")
+      .send({ name: "Manolo", lastName: "Manolez" });
+      employees.push(response.body);
+  }
+});
 describe("User routes", async () => {
   //estás creando un empleado fuera, teniendo que hacer async el describe, para tener un solo empleado con el que trabajar en todos los test, porque si lo creas dentro del test y al get no le haces crear a su vez un empleado te va a decir que espera un empleado creado qeu se ha creado en el test del post, así tienes uno para trabajar con todos los tests
   
-  const employees: string[] = [];
- 
-  beforeAll(async () => {
-    for (let i = 0; i < 5; i++) {
-      const response = await request(app)
-        .post("/employee")
-        .send({ name: "Manolo", lastName: "Manolez" });
-        employees.push(response.body);
-    }
-  });
 
   // console.log(employees)
 
