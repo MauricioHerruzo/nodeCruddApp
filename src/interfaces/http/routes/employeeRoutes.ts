@@ -9,9 +9,9 @@ import { GetEmployee } from "application/use-cases/GetEmployee";
 import { GetAllEmployees } from "application/use-cases/GetAllEmployees";
 import { UpdateEmployee } from "application/use-cases/UpdateEmployee";
 import { FindByFilter } from "application/use-cases/FindByFilter";
+import { GetPaginatedEmployee } from "application/use-cases/PageBasedPagination";
 
 import { EmployeeController } from "../controlers/EmployeeController";
-import { GetPaginatedEmployee } from "application/use-cases/PageBasedPagination";
 const router = Router();
 
 //implementeamos los user controller e inmemoryRepo
@@ -27,9 +27,9 @@ const controller = new EmployeeController(
 );
 
 //tienen que ir los casos de get de más específico a más general, porque si no como tengas el general arriba la query entra al primero que pille y le coincida y ya cagaste
+router.get('/paginated', controller.pagination);
 router.get("/filter", controller.filter);
 router.get("/:id", controller.get);
-router.get('/users', controller.pagination);
 router.get("/", controller.getAll);
 
 router.post("/", controller.create);

@@ -110,7 +110,7 @@ export class EmployeeController {
     try{
 
       const result = await this.getPaginatedEmployee.execute(page, limit);
-      res.json(result);
+      return res.status(200).json(result);
 
     }catch (err: any){
       res.status(404).json({ error: err.message });
