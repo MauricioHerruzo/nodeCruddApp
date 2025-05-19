@@ -8,7 +8,7 @@ import { GetAllEmployees } from "application/use-cases/GetAllEmployees";
 import { GetEmployee } from "application/use-cases/GetEmployee";
 import { UpdateEmployee } from "application/use-cases/UpdateEmployee";
 import { FindByFilter } from "application/use-cases/FindByFilter";
-import { GetPaginatedEmployee } from "application/use-cases/PageBasedPagination";
+import { GetPaginatedEmployee } from "application/use-cases/GetPaginatedEmployee";
 
 export class EmployeeController {
   constructor(
@@ -18,14 +18,12 @@ export class EmployeeController {
     private readonly getEmployee: GetEmployee,
     private readonly UpdateEmployee: UpdateEmployee,
     private readonly findByFilter: FindByFilter,
-    private readonly getPaginatedEmployee : GetPaginatedEmployee
-  ) {}
+    private readonly getPaginatedEmployee: GetPaginatedEmployee
+  ) { }
 
   create = async (req: Request, res: Response) => {
     try {
-      console.log("ID recibido en controller:", req.params.id);
       const {
-        id,
         name,
         lastName,
         position,
@@ -35,7 +33,6 @@ export class EmployeeController {
         yearsOfService,
       } = req.body;
       const employee = await this.createEmployee.execute(
-        id,
         name,
         lastName,
         position,

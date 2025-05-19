@@ -1,4 +1,5 @@
 import { v4 as uuid } from "uuid";
+
 import { Employee } from "domain/models/Employee";
 import { EmployeeRepository } from "domain/repositories/EmployeeRepository";
 
@@ -7,7 +8,6 @@ export class CreateEmployee {
   constructor(private readonly userRepo: EmployeeRepository) {}
 
   async execute(
-    id: string,
     name: string,
     lastName: string,
     position: "junior" | "senior" | "teamLeader" | "ceo",
@@ -26,7 +26,9 @@ export class CreateEmployee {
       team,
       yearsOfService,
     );
+
     await this.userRepo.create(employee);
+
     return employee;
   }
 }

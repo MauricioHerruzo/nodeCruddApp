@@ -9,7 +9,6 @@ describe("Find By either name or position Use Case", () => {
     const createEmployee = new CreateEmployee(repo);
 
     const employeeCreated = await createEmployee.execute(
-      null,
       "Manolo",
       "Manolez",
       "junior",
@@ -19,7 +18,7 @@ describe("Find By either name or position Use Case", () => {
       4,
     );
     const employeeFound = await findByFilter.execute({ name: "Manolo" });
-    console.log(employeeFound);
+
     expect(employeeFound).toMatchObject([employeeCreated]);
   });
 });

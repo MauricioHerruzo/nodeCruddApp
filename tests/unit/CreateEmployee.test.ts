@@ -10,7 +10,6 @@ describe("CreateEmployee Use Case", () => {
     const createEmployee = new CreateEmployee(repo);
 
     const employee = await createEmployee.execute(
-      null,
       "Manolo",
       "Manolez",
       "junior",
@@ -20,10 +19,7 @@ describe("CreateEmployee Use Case", () => {
       4,
     );
 
-    //haces un expect de cada cosa que esperas obtener
     expect(employee.getName()).toBe("Manolo");
     expect(employee.getPosition()).toBe("junior");
-
-    //haces un npm run test
   });
 });

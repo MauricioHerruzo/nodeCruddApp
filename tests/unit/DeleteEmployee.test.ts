@@ -10,7 +10,6 @@ describe("Delete Employee Use Case", () => {
 
     //tengo que crear uno
     const employee = await createEmployee.execute(
-      null,
       "Manolo",
       "Manolez",
       "junior",

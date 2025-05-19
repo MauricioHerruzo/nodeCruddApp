@@ -9,7 +9,7 @@ import { GetEmployee } from "application/use-cases/GetEmployee";
 import { GetAllEmployees } from "application/use-cases/GetAllEmployees";
 import { UpdateEmployee } from "application/use-cases/UpdateEmployee";
 import { FindByFilter } from "application/use-cases/FindByFilter";
-import { GetPaginatedEmployee } from "application/use-cases/PageBasedPagination";
+import { GetPaginatedEmployee } from "application/use-cases/GetPaginatedEmployee";
 
 import { EmployeeController } from "../controlers/EmployeeController";
 const router = Router();

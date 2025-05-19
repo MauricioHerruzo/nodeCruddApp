@@ -64,7 +64,7 @@ export class InMemoryUserRepo implements EmployeeRepository {
     }>,
   ) {
     return this.employees.filter((user) => {
-      // pones el ternario a true, porque si no recibes el filtro de name, pones a true para que pasen todos los names
+      // pones el ternario a true, porque si no recibes el filtro de name, pones a true para que pasen todos los name
       const matchName = filter.name
         ? user.getName().includes(filter.name)
         : true;
@@ -85,9 +85,9 @@ export class InMemoryUserRepo implements EmployeeRepository {
     //lógica de la paginación
     const start = (page - 1) * limit;
     const paginated = this.employees.slice(start, start + limit);
-    return{
-        employees : paginated,
-        total: this.employees.length  
+    return {
+      employees: paginated,
+      total: this.employees.length
     }
   }
 }
