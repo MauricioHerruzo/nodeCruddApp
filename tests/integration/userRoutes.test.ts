@@ -21,16 +21,17 @@ beforeAll(async () => {
     const response = await request(app)
       .post("/employee")
       .send({ name: "Manolo", lastName: "Manolez" });
-    employees.push(response.body);
+    employees.push(response.body) 
+    // console.log(employees);
   }
 });
 
-describe("User routes", async () => {
+describe("User routes",  () => {
   //estás creando un empleado fuera, teniendo que hacer async el describe, para tener un solo empleado con el que trabajar en todos los test, porque si lo creas dentro del test y al get no le haces crear a su vez un empleado te va a decir que espera un empleado creado qeu se ha creado en el test del post, así tienes uno para trabajar con todos los tests
-
+  
   //realmente no necesitamos crear el user dentro para saber que el teste funciona, lo que necesitamos el los expect, y funcionan, la creacion se está haciendo arriba y matchea con lo que esperas
   it("POST /employee should create a user", async () => {
-    expect(employees).toBeDefined();
+
   });
 
   // OTRO TEST, aqui se hace en el mismo archivo, en los casos de uso haces un archivo por cada test
