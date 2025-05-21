@@ -65,8 +65,10 @@ export class PrismaEmployeeRepo implements EmployeeRepository {
     async pagePagination(page: number, limit: number): Promise<{ employees: Employee[]; total: number; }> {
         
         const paginatedEmployees =
+        //SACAR GETTERS PARA TODAS LAS PROPIEDADES
         //en el inmemory tienes un limit y un noseque
         //mira la documentación de prisma porque tienen que existir  funciones para eso, igual que en sql esta el LIMIT y el OFFSET
+
 
     }
 }
