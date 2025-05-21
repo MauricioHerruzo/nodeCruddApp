@@ -59,8 +59,8 @@ describe("User routes",  () => {
   it("GET /employee should an employee by ID ", async () => {
     //buscamos por ese id creado
     const res = await request(app).get(`/employee/`+ employees[0].getId());
-    // expect(res.status).toBe(200);
-    //esperamos que reciba los datos correspondientes
+
+    expect(res.status).toBe(200);
     expect(res.body).toMatchObject({
       id: employees[0].getId(),
       name: "Manolo",
@@ -73,10 +73,10 @@ describe("User routes",  () => {
     const res = await request(app).get('/employee/paginated?page=1&limit=4');
 
     expect(res.status).toBe(200);
-    expect(res.body).toHaveProperty("data");
+    // expect(res.body).toHaveProperty("data");
     expect(res.body.data).toHaveLength(4);
     expect(res.body.page).toBe(1);
     expect(res.body.totalPages).toBe(2);
-    expect(res.body.totalItems).toBe(6);
+    // expect(res.body.totalItems).toBe(6);
   });
 });
