@@ -22,7 +22,7 @@ export class PrismaEmployeeRepo implements EmployeeRepository {
         // las funciones de prima estan en su documentacion 
         const employee = await prisma.user.findMany();
 
-        return employee.map(empolyee => new Employee(employee.id,employee.name, employee.lastName, employee.position, employee.salary, employee.contractTermination, employee.team, employee.yearsOfService))
+        return employee.map(employee => new Employee(employee.id,employee.name, employee.lastName, employee.position, employee.salary, employee.contractTermination, employee.team, employee.yearsOfService))
     }
 
     async create(employee : Employee): Promise<void> {
@@ -59,5 +59,14 @@ export class PrismaEmployeeRepo implements EmployeeRepository {
             }
         })
         return employees.map(employee => new Employee(employee.id,employee.name, employee.lastName, employee.position, employee.salary, employee.contractTermination, employee.team, employee.yearsOfService)
+    }.
+
+
+    async pagePagination(page: number, limit: number): Promise<{ employees: Employee[]; total: number; }> {
+        
+        const paginatedEmployees =
+        //en el inmemory tienes un limit y un noseque
+        //mira la documentación de prisma porque tienen que existir  funciones para eso, igual que en sql esta el LIMIT y el OFFSET
+
     }
 }
