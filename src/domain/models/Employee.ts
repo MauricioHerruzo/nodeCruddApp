@@ -50,4 +50,5 @@ export class Employee {
   public getPosition(): string {
     return this.position;
   }
+
 }
