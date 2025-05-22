@@ -13,7 +13,7 @@ import { FindByFilter } from "application/use-cases/FindByFilter";
 import { GetPaginatedEmployee } from "application/use-cases/GetPaginatedEmployee";
 
 import { EmployeeController } from "../controlers/EmployeeController";
-import { PrismaEmployeeRepo } from "infrastructure/repositories/prismaUserRepo";
+import { PrismaEmployeeRepo } from "infrastructure/repositories/prismaEmployeeRepo";
 const router = Router();
 
 //implementeamos los user controller e inmemoryRepo, este inmemory lo podemos cambiar luego por el repo de prisma o la db que usemos, gracias a la arquitectura hexagonal SOLO TENEMOS QUE CAMBIARLOS EN ESTA LINEA Y TODO EL PROYECTO ACTUA CON EL NUEVO REPOSITORIO

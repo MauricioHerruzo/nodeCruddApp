@@ -1,6 +1,3 @@
-
-import { GetAllEmployees } from "application/use-cases/GetAllEmployees";
-
 import { Employee } from "domain/models/Employee";
 import { EmployeeRepository } from "domain/repositories/EmployeeRepository";
 
@@ -60,26 +57,37 @@ export class PrismaEmployeeRepo implements EmployeeRepository {
         await prisma.employee.delete({where: { id }});
     }
 
-    async findByFilter(filter: Partial<{ name: string; position: "junior" | "senior" | "teamLeader" | "ceo"; }>): Promise<Employee[]> {
+    async findByFilter(filter: Partial<{ name: string; position: string }>): Promise<Employee[]> {
         const employees = await prisma.employee.findMany({
             //ESTO ES LENGUAJE DE PRISMA
             where : {
                 name: filter.name ? { contains: filter.name} : undefined,
                 position : filter.position ? { contains: filter.position} : undefined,
             }
-        })
+        });
 
-        return employees.map(employee => new Employee(employee.id,employee.name, employee.lastName, employee.position, employee.salary, employee.contractTermination, employee.team, employee.yearsOfService)
-    }}
-
-
-    async pagePagination(page: number, limit: number): Promise<{ employees: Employee[]; total: number; }> {
-        
-        const paginatedEmployees =
-        //SACAR GETTERS PARA TODAS LAS PROPIEDADES
-        //en el inmemory tienes un limit y un noseque
-        //mira la documentación de prisma porque tienen que existir  funciones para eso, igual que en sql esta el LIMIT y el OFFSET
+        return employees.map(employee => new Employee(employee.id,employee.name, employee.lastName, employee.position, employee.salary, employee.contractTermination, employee.team, employee.yearsOfService))
+    }
 
 
+    async pagePagination(page: number, limit: number): Promise<{ employees: Employee[]; total: number }> {
+        const paginatedEmployees = await prisma.employee.findMany({
+            skip: (page - 1) * limit,
+            take: limit,
+        });
+
+        return {
+            employees: paginatedEmployees.map(employee => new Employee(
+                employee.id,
+                employee.name,
+                employee.lastName,
+                employee.position,
+                employee.salary,
+                employee.contractTermination,
+                employee.team,
+                employee.yearsOfService
+            )),
+            total: paginatedEmployees.length
+        }
     }
 }

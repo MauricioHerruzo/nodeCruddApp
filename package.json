@@ -3,6 +3,8 @@
   "version": "1.0.0",
   "main": "index.js",
   "scripts": {
+    "generate": "npx prisma generate",
+    "setup": "npm install & npm run generate",
     "dev": "nodemon --exec ts-node -r tsconfig-paths/register src/index.ts",
     "test": "vitest",
     "prepare": "husky",

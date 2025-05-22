@@ -60,7 +60,7 @@ export class InMemoryUserRepo implements EmployeeRepository {
   async findByFilter(
     filter: Partial<{
       name: string;
-      position: "junior" | "senior" | "teamLeader" | "ceo";
+      position: string;
     }>,
   ) {
     return this.employees.filter((user) => {

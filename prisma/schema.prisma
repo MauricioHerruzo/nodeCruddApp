@@ -14,18 +14,13 @@ datasource db {
   url      = env("DATABASE_URL")
 }
 
-enum Position {
-  junior
-  senior
-  teamLeader
-  ceo
-}
+
 
 model Employee {
   id String @id @default(uuid())
   name String
   lastName String
-  position Position
+  position String
   salary Int
   contractTermination String
   team String

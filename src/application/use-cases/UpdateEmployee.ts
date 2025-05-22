@@ -3,11 +3,12 @@ import { EmployeeRepository } from "domain/repositories/EmployeeRepository";
 
 export class UpdateEmployee {
   constructor(private readonly employeeRepository: EmployeeRepository) {}
+
   async execute(
     id: string,
     name: string,
     lastname: string,
-    position: "junior" | "senior" | "teamLeader" | "ceo",
+    position: string,
     salary: number,
     contractTermination: string,
     team: string,

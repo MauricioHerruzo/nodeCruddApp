@@ -3,7 +3,7 @@ export class Employee {
   private readonly id: string;
   private name: string;
   private lastName: string;
-  private position: "junior" | "senior" | "teamLeader" | "ceo";
+  private position: string;
   private salary: number;
   private contractTermination: string;
   private team: string;
@@ -13,7 +13,7 @@ export class Employee {
     id: string,
     name: string,
     lastName: string,
-    position: "junior" | "senior" | "teamLeader" | "ceo",
+    position: string,
     salary: number,
     contractTermination: string,
     team: string,
@@ -32,34 +32,34 @@ export class Employee {
 
   //CHANGE METHODS
 
-  public changeName(newName): void {
-    this.name = newName;
+  public changeName(newName?: string): void {
+    this.name = newName || this.name;
   }
 
-  public changeLastName(newLastName): void {
-    this.lastName = newLastName;
+  public changeLastName(newLastName?: string): void {
+    this.lastName = newLastName || this.lastName;
   }
 
   public changePosition(
-    newPosition: "junior" | "senior" | "teamLeader" | "ceo",
+    newPosition?: string,
   ): void {
-    this.position = newPosition;
+    this.position = newPosition || this.position;
   }
 
-  public changeSalary(newSalary: number): void {
-    this.salary = newSalary;
+  public changeSalary(newSalary?: number): void {
+    this.salary = newSalary || this.salary;
   }
 
-  public changeContractTermination(newContractTermination): void {
-    this.contractTermination = newContractTermination;
+  public changeContractTermination(newContractTermination?: string): void {
+    this.contractTermination = newContractTermination || this.contractTermination;
   }
 
-  public changeTeam(newTeam): void {
-    this.team = newTeam;
+  public changeTeam(newTeam?: string): void {
+    this.team = newTeam || this.team;
   }
 
-  public changeYearsOfService(newYearsOfService): void {
-    this.yearsOfService = newYearsOfService;
+  public changeYearsOfService(newYearsOfService?: number): void {
+    this.yearsOfService = newYearsOfService || this.yearsOfService;
   }
 
 
@@ -78,7 +78,7 @@ export class Employee {
     return this.lastName;
   }
 
-  public getPosition():  "junior" | "senior" | "teamLeader" | "ceo" {
+  public getPosition():  string {
     return this.position;
   }
 
