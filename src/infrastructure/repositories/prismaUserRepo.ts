@@ -5,7 +5,8 @@ import { Employee } from "domain/models/Employee";
 import { EmployeeRepository } from "domain/repositories/EmployeeRepository";
 
 //Has creado la carpta db con el prismaclient para instanciarlo alli y lo exportas, aqui lo importas
-import prisma from "@prisma/client";
+// import prisma from "@prisma/client";
+import prisma  from "./db/PrismaClient";
 
 export class PrismaEmployeeRepo implements EmployeeRepository {
 
@@ -20,7 +21,7 @@ export class PrismaEmployeeRepo implements EmployeeRepository {
 
     async findAll(): Promise<Employee[]> {
         // las funciones de prima estan en su documentacion 
-        const employee = await prisma.user.findMany();
+        const employee = await prisma.employee.findMany();
 
         return employee.map(employee => new Employee(employee.id,employee.name, employee.lastName, employee.position, employee.salary, employee.contractTermination, employee.team, employee.yearsOfService))
     }
