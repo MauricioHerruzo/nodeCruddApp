@@ -32,7 +32,11 @@ export class PrismaEmployeeRepo implements EmployeeRepository {
                 id:employee.getId(),
                 name : employee.getName(),
                 lastName: employee.getLastName(),
-
+                position: employee.getPosition(),
+                salary: employee.getSalary(),
+                contractTermination: employee.getContractTermination(),
+                team : employee.getTeam(),
+                yearsOfService: employee.getYearsOfService() 
             }
         });
     }
@@ -41,8 +45,13 @@ export class PrismaEmployeeRepo implements EmployeeRepository {
         await prisma.employee.update({
             where:{ id: employee.getId()},
             data: {
-                name: employee.getName(),
-                //TODO EL RESTO
+                name : employee.getName(),
+                lastName: employee.getLastName(),
+                position: employee.getPosition(),
+                salary: employee.getSalary(),
+                contractTermination: employee.getContractTermination(),
+                team : employee.getTeam(),
+                yearsOfService: employee.getYearsOfService() 
             }
         })
     }
@@ -51,16 +60,17 @@ export class PrismaEmployeeRepo implements EmployeeRepository {
         await prisma.employee.delete({where: { id }});
     }
 
-    async findByFilter(filter: Partial<{ name: string; email: string; }>): Promise<Employee[]> {
+    async findByFilter(filter: Partial<{ name: string; position: "junior" | "senior" | "teamLeader" | "ceo"; }>): Promise<Employee[]> {
         const employees = await prisma.employee.findMany({
             //ESTO ES LENGUAJE DE PRISMA
             where : {
                 name: filter.name ? { contains: filter.name} : undefined,
-                position : filter.position ? { contains: filter.email} : undefined,
+                position : filter.position ? { contains: filter.position} : undefined,
             }
         })
+
         return employees.map(employee => new Employee(employee.id,employee.name, employee.lastName, employee.position, employee.salary, employee.contractTermination, employee.team, employee.yearsOfService)
-    }.
+    }}
 
 
     async pagePagination(page: number, limit: number): Promise<{ employees: Employee[]; total: number; }> {

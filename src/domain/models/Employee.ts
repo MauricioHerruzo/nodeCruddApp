@@ -29,8 +29,15 @@ export class Employee {
     this.yearsOfService = yearsOfService;
   }
 
-  public changeSalary(newSalary: number): void {
-    this.salary = newSalary;
+
+  //CHANGE METHODS
+
+  public changeName(newName): void {
+    this.name = newName;
+  }
+
+  public changeLastName(newLastName): void {
+    this.lastName = newLastName;
   }
 
   public changePosition(
@@ -39,6 +46,26 @@ export class Employee {
     this.position = newPosition;
   }
 
+  public changeSalary(newSalary: number): void {
+    this.salary = newSalary;
+  }
+
+  public changeContractTermination(newContractTermination): void {
+    this.contractTermination = newContractTermination;
+  }
+
+  public changeTeam(newTeam): void {
+    this.team = newTeam;
+  }
+
+  public changeYearsOfService(newYearsOfService): void {
+    this.yearsOfService = newYearsOfService;
+  }
+
+
+
+
+  //GET METHODS
   public getId(): string {
     return this.id;
   }
@@ -47,8 +74,28 @@ export class Employee {
     return this.name;
   }
 
-  public getPosition(): string {
+  public getLastName(): string {
+    return this.lastName;
+  }
+
+  public getPosition():  "junior" | "senior" | "teamLeader" | "ceo" {
     return this.position;
   }
 
+   public getSalary(): number {
+    return this.salary;
+  }
+
+   public getContractTermination(): string {
+    return this.contractTermination;
+  }  
+
+   public getTeam(): string {
+    return this.team;
+  }  
+
+   public getYearsOfService(): number {
+    return this.yearsOfService;
+  }  
+  
 }

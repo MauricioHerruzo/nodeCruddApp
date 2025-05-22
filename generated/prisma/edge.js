@@ -133,7 +133,7 @@ const config = {
       "value": "prisma-client-js"
     },
     "output": {
-      "value": "D:\\Backend\\nodeCruddApp\\generated\\prisma",
+      "value": "D:\\UGR EPILOGO\\nodeCruddApp\\generated\\prisma",
       "fromEnvVar": null
     },
     "config": {
@@ -147,7 +147,7 @@ const config = {
       }
     ],
     "previewFeatures": [],
-    "sourceFilePath": "D:\\Backend\\nodeCruddApp\\prisma\\schema.prisma",
+    "sourceFilePath": "D:\\UGR EPILOGO\\nodeCruddApp\\prisma\\schema.prisma",
     "isCustomOutput": true
   },
   "relativeEnvPaths": {
