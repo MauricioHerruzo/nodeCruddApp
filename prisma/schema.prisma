@@ -24,3 +24,11 @@ model Employee {
   team String
   yearsOfService Int
 }
+
+model Job {
+  id String @id @default(uuid())
+  name String
+  vacancy Boolean
+  employeeId String?
+
+}
