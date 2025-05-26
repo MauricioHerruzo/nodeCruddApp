@@ -61,6 +61,12 @@ export class PrismaJobRepo implements JobRepository {
         return jobs.map(job => new Job(job.id,job.name, job.vacancy, job.employeeId))
     }
 
-
+    async updateEmployeeId(jobId: string, data: { employeeId: string; vacancy: boolean }): Promise<Job> {
+        const job = await prisma.job.update({
+            where: {id: jobId},
+            data,
+        })
+        return new Job(job.id, job.name, job.vacancy, job.employeeId);
+    }
 
 }

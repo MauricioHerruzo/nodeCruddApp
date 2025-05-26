@@ -7,6 +7,7 @@ import { DeleteJob } from "contextJobs/application/use-cases/DeleteJob";
 import { FindJobByFilter } from "contextJobs/application/use-cases/FindByFilter"; 
 import { GetAllJobs } from "contextJobs/application/use-cases/GetAllJobs";
 import { GetJob } from "contextJobs/application/use-cases/GetJob";
+import { AssingEmployeeToJob } from "@jobs/application/use-cases/AssingEmployee";
 
 
 export class JobController {
@@ -16,6 +17,7 @@ export class JobController {
     private readonly getAllJobs: GetAllJobs,
     private readonly getJob: GetJob,
     private readonly findByFilter: FindJobByFilter,
+    private readonly assingEmployeeToJob: AssingEmployeeToJob
 
   ) { }
 
@@ -76,6 +78,17 @@ export class JobController {
       res.status(200).json(job);
     } catch (err: any) {
       res.status(404).json({ error: err.message });
+    }
+  };
+
+    assignEmployee = async (req: Request, res: Response) => {
+    try {
+      const { jobId, employeeId } = req.params;
+
+      const updatedJob = await this.assingEmployeeToJob.execute(jobId, employeeId);
+      res.status(200).json(updatedJob);
+    } catch (err: any) {
+      res.status(400).json({ error: err.message });
     }
   };
 

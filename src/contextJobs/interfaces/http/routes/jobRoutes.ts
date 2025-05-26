@@ -13,16 +13,20 @@ import { GetJob } from "contextJobs/application/use-cases/GetJob";
 
 import { JobController } from "../controlers/JobController"; 
 import { PrismaJobRepo } from "contextJobs/infrastructure/repositories/prismaJobRepo"; 
+import { AssingEmployeeToJob } from "@jobs/application/use-cases/AssingEmployee";
+import { PrismaEmployeeRepo } from "@employees/infrastructure/repositories/prismaEmployeeRepo";
 const routerJobs = Router();
 
 //implementeamos los user controller e inmemoryRepo, este inmemory lo podemos cambiar luego por el repo de prisma o la db que usemos, gracias a la arquitectura hexagonal SOLO TENEMOS QUE CAMBIARLOS EN ESTA LINEA Y TODO EL PROYECTO ACTUA CON EL NUEVO REPOSITORIO
 const repo = new PrismaJobRepo();
+const repo2 = new PrismaEmployeeRepo();
 const controller = new JobController(
   new CreateJob(repo),
   new DeleteJob(repo),
   new GetAllJobs(repo),
   new GetJob(repo),
-  new FindJobByFilter(repo)
+  new FindJobByFilter(repo),
+  new AssingEmployeeToJob(repo, repo2)
 );
 
 //tienen que ir los casos de get de más específico a más general, porque si no como tengas el general arriba la query entra al primero que pille y le coincida y ya cagaste
@@ -33,6 +37,7 @@ routerJobs.get("/", controller.getAll);
 routerJobs.post("/", controller.create);
 
 // router.put("/:id", controller.update);
+routerJobs.put("/assign/:jobId/:employeeId", controller.assignEmployee);
 
 routerJobs.delete("/:id", controller.delete);
 
