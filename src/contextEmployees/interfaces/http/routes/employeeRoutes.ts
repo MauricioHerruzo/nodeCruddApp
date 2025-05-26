@@ -4,16 +4,16 @@ import { Router } from "express";
 // import { InMemoryUserRepo } from "infrastructure/repositories/inMemoryUserRepo";
 
 
-import { CreateEmployee } from "application/use-cases/CreateEmployee";
-import { DeleteEmployee } from "application/use-cases/DeleteEmployee";
-import { GetEmployee } from "application/use-cases/GetEmployee";
-import { GetAllEmployees } from "application/use-cases/GetAllEmployees";
-import { UpdateEmployee } from "application/use-cases/UpdateEmployee";
-import { FindByFilter } from "application/use-cases/FindByFilter";
-import { GetPaginatedEmployee } from "application/use-cases/GetPaginatedEmployee";
+import { CreateEmployee } from "@employees/application/use-cases/CreateEmployee"; 
+import { DeleteEmployee } from "@employees/application/use-cases/DeleteEmployee";
+import { GetEmployee } from "@employees/application/use-cases/GetEmployee";
+import { GetAllEmployees } from "@employees/application/use-cases/GetAllEmployees";
+import { UpdateEmployee } from "@employees/application/use-cases/UpdateEmployee";
+import { FindByFilter } from "@employees/application/use-cases/FindByFilter";
+import { GetPaginatedEmployee } from "@employees/application/use-cases/GetPaginatedEmployee";
 
-import { EmployeeController } from "../controlers/EmployeeController";
-import { PrismaEmployeeRepo } from "infrastructure/repositories/prismaEmployeeRepo";
+import { EmployeeController } from "../controlers/EmployeeController"; 
+import { PrismaEmployeeRepo } from "@employees/infrastructure/repositories/prismaEmployeeRepo"; 
 const router = Router();
 
 //implementeamos los user controller e inmemoryRepo, este inmemory lo podemos cambiar luego por el repo de prisma o la db que usemos, gracias a la arquitectura hexagonal SOLO TENEMOS QUE CAMBIARLOS EN ESTA LINEA Y TODO EL PROYECTO ACTUA CON EL NUEVO REPOSITORIO

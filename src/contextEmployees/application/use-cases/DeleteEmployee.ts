@@ -1,4 +1,4 @@
-import { EmployeeRepository } from "domain/repositories/EmployeeRepository";
+import { EmployeeRepository } from "@employees/domain/repositories/EmployeeRepository";
 
 export class DeleteEmployee {
   constructor(private readonly employeeRepository: EmployeeRepository) {}

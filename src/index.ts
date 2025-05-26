@@ -2,7 +2,8 @@
 import express from "express";
 
 //importas el router hecho
-import { router } from "./interfaces/http/routes/employeeRoutes";
+import { router } from "@employees/interfaces/http/routes/employeeRoutes";  
+import { routerJobs } from "@jobs/interfaces/http/routes/jobRoutes"; 
 
 //ejecutarlo , esto devuelve el objeto app, que es lo que vamos a usar para todo
 const app = express();
@@ -15,6 +16,7 @@ app.use(express.json());
 
 //usas el router que has importado y que tienes hecho aparte
 app.use("/api/employees", router);
+app.use("/api/jobs", routerJobs)
 
 //Listen
 app.listen(port, () => {

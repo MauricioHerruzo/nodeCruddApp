@@ -2,13 +2,13 @@
 import { Response, Request } from "express";
 
 // import all use cases
-import { CreateEmployee } from "application/use-cases/CreateEmployee";
-import { DeleteEmployee } from "application/use-cases/DeleteEmployee";
-import { GetAllEmployees } from "application/use-cases/GetAllEmployees";
-import { GetEmployee } from "application/use-cases/GetEmployee";
-import { UpdateEmployee } from "application/use-cases/UpdateEmployee";
-import { FindByFilter } from "application/use-cases/FindByFilter";
-import { GetPaginatedEmployee } from "application/use-cases/GetPaginatedEmployee";
+import { CreateEmployee } from "@employees/application/use-cases/CreateEmployee";
+import { DeleteEmployee } from "@employees/application/use-cases/DeleteEmployee";
+import { GetAllEmployees } from "@employees/application/use-cases/GetAllEmployees";
+import { GetEmployee } from "@employees/application/use-cases/GetEmployee";
+import { UpdateEmployee } from "@employees/application/use-cases/UpdateEmployee";
+import { FindByFilter } from "@employees/application/use-cases/FindByFilter";
+import { GetPaginatedEmployee } from "@employees/application/use-cases/GetPaginatedEmployee";
 
 export class EmployeeController {
   constructor(

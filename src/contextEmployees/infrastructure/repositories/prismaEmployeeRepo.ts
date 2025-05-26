@@ -1,5 +1,5 @@
-import { Employee } from "domain/models/Employee";
-import { EmployeeRepository } from "domain/repositories/EmployeeRepository";
+import { Employee } from "@employees/domain/models/Employee";
+import { EmployeeRepository } from "@employees/domain/repositories/EmployeeRepository";
 
 //Has creado la carpta db con el prismaclient para instanciarlo alli y lo exportas, aqui lo importas
 // import prisma from "@prisma/client";

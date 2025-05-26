@@ -4,12 +4,17 @@
     "module": "CommonJS",
     //estoy estableciendo src como ruta absoluta para ahorrame luego en rallada de rutas
     "baseUrl": "./src",
+    "paths": {
+      "@employees/*": ["contextEmployees/*"],
+      "@jobs/*": ["contextJobs/*"],
+      "@shared/*": ["shared/*"]
+    },
     "outDir": "./dist",
     "rootDir": "./",
     "esModuleInterop": true,
     "moduleResolution": "node"
   },
-  "include": ["src", "tests"],
+  "include": ["src", "tests", "contextJobs", "contextEmployees"],
   "exclude": ["dist"]
 }
 

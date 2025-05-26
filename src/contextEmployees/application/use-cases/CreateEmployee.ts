@@ -1,7 +1,7 @@
 import { v4 as uuid } from "uuid";
 
-import { Employee } from "domain/models/Employee";
-import { EmployeeRepository } from "domain/repositories/EmployeeRepository";
+import { Employee } from "@employees/domain/models/Employee";
+import { EmployeeRepository } from "@employees/domain/repositories/EmployeeRepository";
 
 //una clase que solo hace una cosa
 export class CreateEmployee {
