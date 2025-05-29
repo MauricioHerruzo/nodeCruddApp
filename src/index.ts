@@ -1,5 +1,7 @@
 //Importar el framwork de express
 import express from "express";
+import swaggerUI from 'swagger-ui-express';
+import {swaggerSpec} from '../swaggerConfig';
 
 //importas el router hecho
 import { router } from "@employees/interfaces/http/routes/employeeRoutes";  
@@ -16,6 +18,9 @@ app.use(express.json());
 
 //usas el router que has importado y que tienes hecho aparte
 app.use("/api/employees", router);
+//documentación de swagger
+app.use('/api-docs', swaggerUI.server, swaggerUI.setup(swaggerSpec));
+
 app.use("/api/jobs", routerJobs)
 
 //Listen
